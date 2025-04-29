@@ -97,18 +97,6 @@ document.addEventListener('DOMContentLoaded', () => {
             card.style.transform = 'translateY(0)';
         }, 200 * index);
     });
-    
-    // 技能进度条动画
-    const skillBars = document.querySelectorAll('.progress');
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.width = entry.target.getAttribute('data-progress') + '%';
-            }
-        });
-    }, { threshold: 0.5 });
-    
-    skillBars.forEach(bar => observer.observe(bar));
 });
 
 // 滚动动画
@@ -126,4 +114,22 @@ const animateOnScroll = () => {
 };
 
 window.addEventListener('scroll', animateOnScroll);
-window.addEventListener('load', animateOnScroll); 
+window.addEventListener('load', animateOnScroll);
+
+// 项目卡片悬停效果
+const projectCards = document.querySelectorAll('.project-card');
+projectCards.forEach(card => {
+    card.addEventListener('mouseenter', () => {
+        const icon = card.querySelector('.project-icon');
+        if (icon) {
+            icon.style.transform = 'scale(1.1) rotate(5deg)';
+        }
+    });
+    
+    card.addEventListener('mouseleave', () => {
+        const icon = card.querySelector('.project-icon');
+        if (icon) {
+            icon.style.transform = 'scale(1) rotate(0)';
+        }
+    });
+}); 
