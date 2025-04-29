@@ -23,7 +23,7 @@ body {
     line-height: 1.6;
     color: var(--text-color);
     background-color: var(--bg-color);
-    background-image: url('../images/bg-pattern.png');
+    background-image: url('https://i1.wp.com/biu.biuxin.com/2025/04/24/157325.webp');
     background-attachment: fixed;
     overflow-x: hidden;
 }
@@ -142,16 +142,21 @@ main {
     max-width: 1200px;
     margin: 70px auto 0;
     padding: 0 20px;
+    background-image: url('https://i1.wp.com/biu.biuxin.com/2025/04/24/157325.webp');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
 }
 
 section {
-    padding: 5rem 2rem;
-    background: var(--card-bg);
+    padding: 3rem 2rem;
+    background: rgba(255, 255, 255, 0.95);
     border-radius: 10px;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
     box-shadow: var(--shadow);
     position: relative;
     overflow: hidden;
+    backdrop-filter: blur(10px);
 }
 
 .section-title {
@@ -177,17 +182,17 @@ section {
 
 /* 英雄区域 */
 .hero {
-    background-color: var(--card-bg);
+    background-color: transparent;
     text-align: center;
-    padding: 6rem 2rem;
+    padding: 4rem 2rem;
     border-radius: 10px;
-    margin-bottom: 3rem;
-    min-height: 90vh;
+    margin-bottom: 2rem;
+    min-height: 60vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     position: relative;
-    background-image: url('../images/hero-bg.jpg');
+    background-image: url('https://i1.wp.com/biu.biuxin.com/2025/04/24/157325.webp');
     background-size: cover;
     background-position: center;
     color: white;
@@ -200,7 +205,7 @@ section {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.6);
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.7), rgba(108, 99, 255, 0.7));
     z-index: 1;
 }
 
@@ -278,16 +283,16 @@ section {
 }
 
 h1 {
-    font-size: 3.5rem;
-    margin-bottom: 1.5rem;
+    font-size: 2.8rem;
+    margin-bottom: 1.2rem;
     color: white;
     line-height: 1.2;
 }
 
 .subtitle {
-    font-size: 1.2rem;
-    color: rgba(255, 255, 255, 0.8);
-    margin-bottom: 2rem;
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 1.5rem;
 }
 
 .cta-buttons {
@@ -651,14 +656,14 @@ h1 {
 /* 项目部分 */
 .project-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 2rem;
-    margin-top: 2rem;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
 }
 
 .project-card {
-    background: linear-gradient(135deg, var(--card-bg) 0%, #f8f9fa 100%);
-    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 12px;
     overflow: hidden;
     box-shadow: var(--shadow);
     transition: var(--transition);
@@ -695,17 +700,17 @@ h1 {
 .project-icon {
     background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     color: white;
-    width: 70px;
-    height: 70px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: -35px auto 0;
-    font-size: 1.8rem;
-    box-shadow: 0 8px 20px rgba(108, 99, 255, 0.4);
+    margin: -25px auto 0;
+    font-size: 1.4rem;
+    box-shadow: 0 5px 15px rgba(108, 99, 255, 0.4);
     position: relative;
-    z-index: 1;
+    z-index: 2;
     transition: var(--transition);
 }
 
@@ -715,7 +720,7 @@ h1 {
 }
 
 .project-info {
-    padding: 2rem;
+    padding: 1.5rem;
     text-align: center;
     flex-grow: 1;
     display: flex;
@@ -725,8 +730,8 @@ h1 {
 }
 
 .project-info h3 {
-    font-size: 1.4rem;
-    margin-bottom: 0.8rem;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
     color: var(--text-color);
     transition: var(--transition);
 }
@@ -737,10 +742,10 @@ h1 {
 
 .project-info p {
     color: var(--light-text);
-    margin-bottom: 1.5rem;
-    font-size: 1rem;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
     flex-grow: 1;
-    line-height: 1.6;
+    line-height: 1.5;
 }
 
 .project-links {
@@ -750,17 +755,8 @@ h1 {
 }
 
 .project-links a {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    color: var(--primary-color);
-    text-decoration: none;
-    font-weight: 500;
-    transition: var(--transition);
-    padding: 0.8rem 1.5rem;
-    border-radius: 8px;
-    background: linear-gradient(135deg, rgba(108, 99, 255, 0.1), rgba(255, 107, 107, 0.1));
-    border: 1px solid rgba(108, 99, 255, 0.2);
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
 }
 
 .project-links a:hover {
@@ -849,29 +845,17 @@ footer {
 
 /* 响应式设计 */
 @media (max-width: 992px) {
-    .hero-content {
-        flex-direction: column;
-        text-align: center;
+    .hero {
+        min-height: 50vh;
+        padding: 3rem 1.5rem;
     }
     
-    .hero-text {
-        text-align: center;
-    }
-    
-    .cta-buttons {
-        justify-content: center;
-    }
-    
-    .about-content {
-        grid-template-columns: 1fr;
-    }
-    
-    .image-container {
-        margin: 0 auto;
+    h1 {
+        font-size: 2.2rem;
     }
     
     .project-grid {
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
     }
 }
 
@@ -901,11 +885,16 @@ footer {
     }
     
     .hero {
-        padding: 4rem 1rem;
+        min-height: 40vh;
+        padding: 2.5rem 1rem;
     }
     
     h1 {
-        font-size: 2.5rem;
+        font-size: 1.8rem;
+    }
+    
+    .subtitle {
+        font-size: 1rem;
     }
     
     .section-title {
