@@ -23,7 +23,6 @@
                 <li><a href="#home" class="nav-link"><i class="fas fa-home"></i> <span>首页</span></a></li>
                 <li><a href="#about" class="nav-link"><i class="fas fa-user"></i> <span>关于我</span></a></li>
                 <li><a href="#projects" class="nav-link"><i class="fas fa-code"></i> <span>项目</span></a></li>
-                <li><a href="#contact" class="nav-link"><i class="fas fa-envelope"></i> <span>联系方式</span></a></li>
             </ul>
         </nav>
         <div class="menu-toggle">
@@ -40,8 +39,7 @@
                     <h1 class="glitch" data-text="欢迎来到我的个人主页">欢迎来到我的个人主页</h1>
                     <p class="subtitle">前端开发者 / 设计爱好者 / 创意工作者</p>
                     <div class="cta-buttons">
-                        <a href="#projects" class="btn btn-primary">查看作品</a>
-                        <a href="#contact" class="btn btn-secondary">联系我</a>
+                        <a href="#projects" class="btn btn-primary">查看项目</a>
                     </div>
                 </div>
                 <div class="hero-image">
@@ -90,10 +88,6 @@
                         <div class="info-item">
                             <span class="info-label"><i class="fas fa-envelope"></i> 邮箱:</span>
                             <span class="info-value">email@example.com</span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-label"><i class="fas fa-phone"></i> 电话:</span>
-                            <span class="info-value">+86 123 4567 8900</span>
                         </div>
                     </div>
                 </div>
@@ -173,129 +167,178 @@
 
         <section id="projects" class="projects">
             <h2 class="section-title">我的项目</h2>
-            <div class="project-filters">
-                <button class="filter-btn active" data-filter="all">全部</button>
-                <button class="filter-btn" data-filter="web">网站</button>
-                <button class="filter-btn" data-filter="app">应用</button>
-                <button class="filter-btn" data-filter="design">设计</button>
-            </div>
             <div class="project-grid">
-                <div class="project-card" data-category="web">
-                    <div class="project-image">
-                        <img src="https://via.placeholder.com/600x400" alt="项目图片">
-                        <div class="project-overlay">
-                            <div class="project-links">
-                                <a href="#" target="_blank"><i class="fab fa-github"></i></a>
-                                <a href="#" target="_blank"><i class="fas fa-external-link-alt"></i></a>
-                            </div>
-                        </div>
-                    </div>
+                <div class="project-card">
                     <div class="project-info">
-                        <h3>项目名称 1</h3>
-                        <p>项目描述和主要功能说明，简要介绍项目的目标和实现的技术。</p>
-                        <div class="project-tags">
-                            <span>HTML</span>
-                            <span>CSS</span>
-                            <span>JavaScript</span>
+                        <h3>个人主页</h3>
+                        <p>我的个人主页网站</p>
+                        <div class="project-links">
+                            <a href="https://biuxin.com/" target="_blank"><i class="fas fa-external-link-alt"></i> 访问网站</a>
                         </div>
                     </div>
                 </div>
-                <div class="project-card" data-category="app">
-                    <div class="project-image">
-                        <img src="https://via.placeholder.com/600x400" alt="项目图片">
-                        <div class="project-overlay">
-                            <div class="project-links">
-                                <a href="#" target="_blank"><i class="fab fa-github"></i></a>
-                                <a href="#" target="_blank"><i class="fas fa-external-link-alt"></i></a>
-                            </div>
-                        </div>
-                    </div>
+                <div class="project-card">
                     <div class="project-info">
-                        <h3>项目名称 2</h3>
-                        <p>项目描述和主要功能说明，简要介绍项目的目标和实现的技术。</p>
-                        <div class="project-tags">
-                            <span>React</span>
-                            <span>Node.js</span>
-                            <span>MongoDB</span>
+                        <h3>Hexo博客</h3>
+                        <p>基于Hexo的个人博客</p>
+                        <div class="project-links">
+                            <a href="https://blog.biuxin.com/" target="_blank"><i class="fas fa-external-link-alt"></i> 访问网站</a>
                         </div>
                     </div>
                 </div>
-                <div class="project-card" data-category="design">
-                    <div class="project-image">
-                        <img src="https://via.placeholder.com/600x400" alt="项目图片">
-                        <div class="project-overlay">
-                            <div class="project-links">
-                                <a href="#" target="_blank"><i class="fab fa-github"></i></a>
-                                <a href="#" target="_blank"><i class="fas fa-external-link-alt"></i></a>
-                            </div>
-                        </div>
-                    </div>
+                <div class="project-card">
                     <div class="project-info">
-                        <h3>项目名称 3</h3>
-                        <p>项目描述和主要功能说明，简要介绍项目的目标和实现的技术。</p>
-                        <div class="project-tags">
-                            <span>UI/UX</span>
-                            <span>Figma</span>
-                            <span>Adobe XD</span>
+                        <h3>临时邮件</h3>
+                        <p>临时邮箱服务</p>
+                        <div class="project-links">
+                            <a href="https://email.biuxin.com/" target="_blank"><i class="fas fa-external-link-alt"></i> 访问网站</a>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
-
-        <section id="contact" class="contact">
-            <h2 class="section-title">联系我</h2>
-            <div class="contact-content">
-                <div class="contact-info">
-                    <div class="contact-card">
-                        <div class="contact-icon">
-                            <i class="fas fa-map-marker-alt"></i>
+                <div class="project-card">
+                    <div class="project-info">
+                        <h3>哪吒监控</h3>
+                        <p>服务器监控系统</p>
+                        <div class="project-links">
+                            <a href="https://nezha.biuxin.com/" target="_blank"><i class="fas fa-external-link-alt"></i> 访问网站</a>
                         </div>
-                        <div class="contact-details">
-                            <h3>地址</h3>
-                            <p>城市，省份，国家</p>
-                        </div>
-                    </div>
-                    <div class="contact-card">
-                        <div class="contact-icon">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <div class="contact-details">
-                            <h3>邮箱</h3>
-                            <p>email@example.com</p>
-                        </div>
-                    </div>
-                    <div class="contact-card">
-                        <div class="contact-icon">
-                            <i class="fas fa-phone"></i>
-                        </div>
-                        <div class="contact-details">
-                            <h3>电话</h3>
-                            <p>+86 123 4567 8900</p>
-                        </div>
-                    </div>
-                    <div class="social-links">
-                        <a href="#" target="_blank" class="social-link"><i class="fab fa-github"></i></a>
-                        <a href="#" target="_blank" class="social-link"><i class="fab fa-linkedin"></i></a>
-                        <a href="#" target="_blank" class="social-link"><i class="fab fa-twitter"></i></a>
-                        <a href="#" target="_blank" class="social-link"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
-                <form class="contact-form">
-                    <div class="form-group">
-                        <input type="text" placeholder="你的姓名" required>
+                <div class="project-card">
+                    <div class="project-info">
+                        <h3>LobeChatAI</h3>
+                        <p>AI聊天应用</p>
+                        <div class="project-links">
+                            <a href="https://lobe-chat.biuxin.com/" target="_blank"><i class="fas fa-external-link-alt"></i> 访问网站</a>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <input type="email" placeholder="你的邮箱" required>
+                </div>
+                <div class="project-card">
+                    <div class="project-info">
+                        <h3>随机一言API</h3>
+                        <p>随机一言API服务</p>
+                        <div class="project-links">
+                            <a href="https://v1.biuxin.com" target="_blank"><i class="fas fa-external-link-alt"></i> 访问网站</a>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <input type="text" placeholder="主题">
+                </div>
+                <div class="project-card">
+                    <div class="project-info">
+                        <h3>随机图API</h3>
+                        <p>随机图片API服务</p>
+                        <div class="project-links">
+                            <a href="https://api.200036.xyz/" target="_blank"><i class="fas fa-external-link-alt"></i> 访问网站</a>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <textarea placeholder="你的留言" required></textarea>
+                </div>
+                <div class="project-card">
+                    <div class="project-info">
+                        <h3>LibreTV</h3>
+                        <p>在线视频搜索与观看平台</p>
+                        <div class="project-links">
+                            <a href="https://video.biuxin.com" target="_blank"><i class="fas fa-external-link-alt"></i> 访问网站</a>
+                        </div>
                     </div>
-                    <button type="submit" class="btn btn-primary">发送消息</button>
-                </form>
+                </div>
+                <div class="project-card">
+                    <div class="project-info">
+                        <h3>Alist存储</h3>
+                        <p>文件存储服务</p>
+                        <div class="project-links">
+                            <a href="https://alist.biuxin.com" target="_blank"><i class="fas fa-external-link-alt"></i> 访问网站</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-info">
+                        <h3>Blog朋友圈</h3>
+                        <p>博客朋友圈服务</p>
+                        <div class="project-links">
+                            <a href="https://friend.biuxin.com" target="_blank"><i class="fas fa-external-link-alt"></i> 访问网站</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-info">
+                        <h3>Blog友链检测</h3>
+                        <p>博客友链检测服务</p>
+                        <div class="project-links">
+                            <a href="https://check.biuxin.com" target="_blank"><i class="fas fa-external-link-alt"></i> 访问网站</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-info">
+                        <h3>小姐姐视频</h3>
+                        <p>视频分享平台</p>
+                        <div class="project-links">
+                            <a href="https://tiktok.biuxin.com" target="_blank"><i class="fas fa-external-link-alt"></i> 访问网站</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-info">
+                        <h3>站点检测</h3>
+                        <p>网站状态检测服务</p>
+                        <div class="project-links">
+                            <a href="https://status.biuxin.com" target="_blank"><i class="fas fa-external-link-alt"></i> 访问网站</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-info">
+                        <h3>MoePush消息推送</h3>
+                        <p>消息推送服务</p>
+                        <div class="project-links">
+                            <a href="https://moepush.biuxin.com/" target="_blank"><i class="fas fa-external-link-alt"></i> 访问网站</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-info">
+                        <h3>短链二维码</h3>
+                        <p>短链接和二维码生成服务</p>
+                        <div class="project-links">
+                            <a href="https://bixin.dpdns.org/" target="_blank"><i class="fas fa-external-link-alt"></i> 访问网站</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-info">
+                        <h3>Sink短链</h3>
+                        <p>短链接生成服务</p>
+                        <div class="project-links">
+                            <a href="https://sink.biuxin.com/" target="_blank"><i class="fas fa-external-link-alt"></i> 访问网站</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-info">
+                        <h3>RSS美化</h3>
+                        <p>RSS订阅美化服务</p>
+                        <div class="project-links">
+                            <a href="https://rss.biuxin.com/" target="_blank"><i class="fas fa-external-link-alt"></i> 访问网站</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-info">
+                        <h3>CFAnalytics数据分析</h3>
+                        <p>网站数据分析服务</p>
+                        <div class="project-links">
+                            <a href="https://analytics.biuxin.com/" target="_blank"><i class="fas fa-external-link-alt"></i> 访问网站</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-info">
+                        <h3>清羽飞扬带壳工具</h3>
+                        <p>Mac应用打包工具</p>
+                        <div class="project-links">
+                            <a href="https://mac.biuxin.com/" target="_blank"><i class="fas fa-external-link-alt"></i> 访问网站</a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
@@ -309,7 +352,6 @@
                 <a href="#home">首页</a>
                 <a href="#about">关于我</a>
                 <a href="#projects">项目</a>
-                <a href="#contact">联系方式</a>
             </div>
             <div class="footer-social">
                 <a href="#" target="_blank"><i class="fab fa-github"></i></a>
