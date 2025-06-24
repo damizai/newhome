@@ -1,186 +1,234 @@
 <!DOCTYPE html>
-<html lang="zh">
-
+<html lang="zh-CN">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no">
-    <title>东方月初のHOME</title>
-    <meta name="description" content="清羽飞扬のHOME">
-    <meta name="keywords" content="tingyu, 清羽飞扬, LiuShen, 听雨">
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
-    <link rel="icon" href="/favicon.ico" type="image/x-icon">
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            min-height: 100vh;
-            background: linear-gradient(145deg, #1a1a2e 0%, #16213e 100%);
-            overflow: hidden;
-            position: relative;
-        }
-        #fullscreen-video {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100vw; height: 100vh;
-            object-fit: cover;
-            z-index: -1;
-            filter: brightness(0.85);
-        }
-        .content {
-            position: relative;
-            z-index: 1;
-            color: white;
-            padding: 40px 20px 20px 20px;
-            text-align: center;
-            font-family: '微软雅黑', sans-serif;
-            text-shadow: 0 2px 16px rgba(0,0,0,0.4);
-            background: rgba(0,0,0,0.25);
-            border-radius: 20px;
-            max-width: 520px;
-            margin: 10vh auto 0 auto;
-        }
-        .video-overlay-img-left {
-            position: fixed;
-            bottom: 20px; left: 20px;
-            width: 180px; height: auto;
-            z-index: 95;
-            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
-            cursor: pointer;
-            transition: transform 0.3s;
-        }
-        .video-overlay-img-left:hover { transform: scale(1.05);}
-        @media (max-width: 768px) {
-            .video-overlay-img-left { width: 90px; }
-        }
-        @media (max-width: 480px) {
-            .video-overlay-img-left { width: 70px; }
-        }
-        .video-overlay-img {
-            position: fixed;
-            top: 80px; right: 85px;
-            width: 400px; height: auto;
-            z-index: 99;
-            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
-        }
-        @media (max-width: 768px) {
-            .video-overlay-img { width: 140px; }
-        }
-        @media (max-width: 480px) {
-            .video-overlay-img { width: 100px; }
-        }
-        .btn-container {
-            position: fixed;
-            bottom: 20px; right: 20px;
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-            max-width: 80vw;
-            z-index: 100;
-        }
-        .music-btn {
-            width: 70px; height: 70px;
-            cursor: pointer;
-            background: rgba(255,255,255,0.05);
-            border: none;
-            border-radius: 12px;
-            padding: 5px;
-            backdrop-filter: blur(5px);
-            transition: all 0.3s ease;
-            overflow: hidden;
-        }
-        .music-btn img {
-            width: 100%; height: 100%;
-            object-fit: cover;
-            border-radius: 8px;
-            transition: transform 0.3s;
-        }
-        .music-btn:hover img { transform: scale(1.05);}
-        .music-btn.playing {
-            background: rgba(0,247,255,0.1);
-            box-shadow: 0 0 15px rgba(0,247,255,0.3);
-        }
-        @media (max-width: 480px) {
-            .btn-container { bottom: 10px; right: 10px; gap: 10px;}
-            .music-btn { width: 60px; height: 60px;}
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <title>东方月初のHOME</title>
+  <style>
+    /* 重置和基础样式 */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html, body {
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+      font-family: '微软雅黑', sans-serif;
+      background: #111;
+      color: #fff;
+      user-select: none;
+    }
+
+    /* 视频背景 */
+    #bg-video {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      z-index: -1;
+      filter: brightness(0.85);
+    }
+
+    /* 中心内容 */
+    .content {
+      position: relative;
+      max-width: 520px;
+      margin: 10vh auto 0;
+      padding: 30px 20px;
+      background: rgba(0,0,0,0.25);
+      border-radius: 20px;
+      text-align: center;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    }
+    .content h1 {
+      font-size: 2.8rem;
+      margin-bottom: 0.8rem;
+      font-weight: 700;
+    }
+    .content p {
+      font-size: 1.2rem;
+      line-height: 1.6;
+      margin-bottom: 0.6rem;
+    }
+
+    /* 左下角图片 */
+    .left-img {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      width: 180px;
+      cursor: pointer;
+      z-index: 90;
+      transition: transform 0.3s ease;
+      filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+    }
+    .left-img:hover {
+      transform: scale(1.05);
+    }
+
+    /* 右上角图片 */
+    .right-img {
+      position: fixed;
+      top: 80px;
+      right: 85px;
+      width: 400px;
+      z-index: 90;
+      filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+    }
+
+    /* 音乐按钮容器 */
+    .music-btn-container {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      display: flex;
+      gap: 15px;
+      z-index: 100;
+      flex-wrap: wrap;
+      max-width: 80vw;
+    }
+
+    /* 音乐按钮样式 */
+    .music-btn {
+      width: 70px;
+      height: 70px;
+      border-radius: 12px;
+      border: none;
+      background: rgba(255,255,255,0.05);
+      backdrop-filter: blur(5px);
+      cursor: pointer;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 6px rgba(0,0,0,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .music-btn img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 8px;
+      transition: transform 0.3s ease;
+    }
+    .music-btn:hover img {
+      transform: scale(1.05);
+    }
+    .music-btn.playing {
+      background: rgba(0, 247, 255, 0.15);
+      box-shadow: 0 0 15px rgba(0, 247, 255, 0.6);
+    }
+
+    /* 响应式 */
+    @media (max-width: 768px) {
+      .left-img { width: 100px; }
+      .right-img { width: 140px; right: 20px; top: 50px; }
+      .music-btn { width: 60px; height: 60px; }
+      .content { max-width: 90vw; margin-top: 8vh; }
+    }
+    @media (max-width: 480px) {
+      .left-img { width: 70px; bottom: 10px; left: 10px; }
+      .right-img { width: 100px; top: 30px; right: 10px; }
+      .music-btn { width: 50px; height: 50px; }
+      .music-btn-container { gap: 10px; bottom: 10px; right: 10px; }
+    }
+  </style>
 </head>
-
 <body>
-    <!-- 视频背景 -->
-    <video id="fullscreen-video" autoplay muted loop playsinline>
-        <source src="./css/rainy.mp4" type="video/mp4">
-        您的浏览器不支持视频标签
-    </video>
 
-    <!-- 主页内容 -->
-    <div class="content">
-        <h1>欢迎来到东方月初のHOME</h1>
-        <p>你喜欢的景色住在我心里，如同满月居于夜空。</p>
-        <p>当鸟云与阳光接吻，便化成满地素花。</p>
-    </div>
+  <!-- 视频背景 -->
+  <video id="bg-video" autoplay muted loop playsinline>
+    <source src="your-video.mp4" type="video/mp4" />
+    <!-- 这里替换成你的视频地址 -->
+    您的浏览器不支持视频播放。
+  </video>
 
-    <!-- 左下角图片链接 -->
-    <a href="https://blog.liushen.fun" target="_self">
-        <img src="./css/tingyu.png" alt="左下角图片" class="video-overlay-img-left">
-    </a>
-    <!-- 右上角装饰图片 -->
-    <img src="./css/image.png" alt="装饰图片" class="video-overlay-img">
+  <!-- 中心内容 -->
+  <div class="content">
+    <h1>东方月初のHOME</h1>
+    <p>你喜欢的景色住在我心里，如同满月居于夜空。</p>
+    <p>当鸟云与阳光接吻，便化成满地素花。</p>
+  </div>
 
-    <!-- 右下角音乐按钮 -->
-    <div class="btn-container">
-        <button class="music-btn" data-audio="audio1">
-            <img src="./css/audio1.png" alt="音乐1" onerror="this.style.display='none'">
-        </button>
-        <button class="music-btn" data-audio="audio2">
-            <img src="./css/audio2.png" alt="音乐2" onerror="this.style.display='none'">
-        </button>
-        <button class="music-btn" data-audio="audio3">
-            <img src="./css/audio3.png" alt="音乐3" onerror="this.style.display='none'">
-        </button>
-    </div>
-    <!-- 隐藏音频元素 -->
-    <audio id="audio1" class="hidden-audio" loop>
-        <source src="./css/audio1.mp3" type="audio/mpeg">
-    </audio>
-    <audio id="audio2" class="hidden-audio" loop>
-        <source src="./css/audio2.mp3" type="audio/mpeg">
-    </audio>
-    <audio id="audio3" class="hidden-audio" loop>
-        <source src="./css/audio3.mp3" type="audio/mpeg">
-    </audio>
+  <!-- 左下角图片链接 -->
+  <a href="https://blog.liushen.fun" target="_self" rel="noopener">
+    <img src="tingyu.png" alt="左下角图片" class="left-img" />
+  </a>
 
-    <script>
-        const musicButtons = document.querySelectorAll('.music-btn');
-        const audios = {
-            audio1: document.getElementById('audio1'),
-            audio2: document.getElementById('audio2'),
-            audio3: document.getElementById('audio3')
-        };
-        let playingStates = { audio1: false, audio2: false, audio3: false };
-        musicButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const audioId = button.dataset.audio;
-                const audio = audios[audioId];
-                if (playingStates[audioId]) {
-                    audio.pause();
-                    playingStates[audioId] = false;
-                    button.classList.remove('playing');
-                } else {
-                    audio.play().catch(() => {});
-                    playingStates[audioId] = true;
-                    button.classList.add('playing');
-                }
-            });
-        });
-        // 首次点击页面解锁音频自动播放
-        document.addEventListener('click', () => {
-            musicButtons.forEach(button => {
-                const audioId = button.dataset.audio;
-                const audio = audios[audioId];
-                if (audio.paused) return;
-                audio.play().catch(() => {});
-            });
-        }, { once: true });
-    </script>
+  <!-- 右上角装饰图片 -->
+  <img src="image.png" alt="右上角装饰" class="right-img" />
+
+  <!-- 音乐按钮 -->
+  <div class="music-btn-container">
+    <button class="music-btn" data-audio="audio1" aria-label="播放音乐1">
+      <img src="audio1.png" alt="音乐1封面" />
+    </button>
+    <button class="music-btn" data-audio="audio2" aria-label="播放音乐2">
+      <img src="audio2.png" alt="音乐2封面" />
+    </button>
+    <button class="music-btn" data-audio="audio3" aria-label="播放音乐3">
+      <img src="audio3.png" alt="音乐3封面" />
+    </button>
+  </div>
+
+  <!-- 隐藏音频元素 -->
+  <audio id="audio1" loop>
+    <source src="audio1.mp3" type="audio/mpeg" />
+  </audio>
+  <audio id="audio2" loop>
+    <source src="audio2.mp3" type="audio/mpeg" />
+  </audio>
+  <audio id="audio3" loop>
+    <source src="audio3.mp3" type="audio/mpeg" />
+  </audio>
+
+  <script>
+    const buttons = document.querySelectorAll('.music-btn');
+    const audios = {
+      audio1: document.getElementById('audio1'),
+      audio2: document.getElementById('audio2'),
+      audio3: document.getElementById('audio3')
+    };
+
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const audioId = btn.getAttribute('data-audio');
+        const audio = audios[audioId];
+
+        if (!audio) return;
+
+        // 如果该音频正在播放，则暂停
+        if (!audio.paused) {
+          audio.pause();
+          btn.classList.remove('playing');
+        } else {
+          // 播放前暂停其他音频，确保只有一个音频播放
+          Object.entries(audios).forEach(([id, a]) => {
+            if (id !== audioId) {
+              a.pause();
+              document.querySelector(`button[data-audio="${id}"]`).classList.remove('playing');
+            }
+          });
+          audio.play().catch(() => {
+            // 处理自动播放被阻止的情况
+            alert('请先点击页面以允许播放音频');
+          });
+          btn.classList.add('playing');
+        }
+      });
+    });
+
+    // 解决部分浏览器自动播放限制，首次点击页面解锁音频播放
+    document.addEventListener('click', () => {
+      Object.values(audios).forEach(audio => {
+        if (audio.paused) {
+          audio.play().then(() => audio.pause()).catch(() => {});
+        }
+      });
+    }, { once: true });
+  </script>
 </body>
 </html>
