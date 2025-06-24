@@ -1,323 +1,275 @@
+
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>我的个人主页</title>
-    <link rel="stylesheet" href="static/css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <link rel="icon" href="static/images/favicon.ico" type="image/x-icon">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no">
+    <title>东方月初のHOME</title>
+    <meta name="description" content="清羽飞扬のHOME">
+    <meta name="keywords" content="tingyu, 清羽飞扬, LiuShen, 听雨">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <style>
+        /* 以下为新增的左下角图片样式（修改点1） */
+        .video-overlay-img-left {
+            position: fixed;
+            bottom: 20px;
+            /* 距底部20px */
+            left: 20px;
+            /* 距左侧20px */
+            width: 180px;
+            /* 基础尺寸 */
+            height: auto;
+            z-index: 95;
+            /* 层级控制（在按钮下方） */
+            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        /* 响应式适配 */
+        @media (max-width: 768px) {
+            .video-overlay-img-left {
+                width: 90px;
+                /* 平板尺寸 */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .video-overlay-img-left {
+                width: 70px;
+                /* 手机尺寸 */
+            }
+        }
+
+        /* 悬停动画 */
+        .video-overlay-img-left:hover {
+            transform: scale(1.05);
+        }
+
+        /* 以下为修改后的图片样式（修改点2） */
+        .video-overlay-img {
+            position: fixed;
+            top: 80px;
+            right: 85px;
+            width: 400px;
+            /* 修改点2：增大宽度（原120px） */
+            height: auto;
+            z-index: 99;
+            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+
+            /* 新增响应式适配 */
+            @media (max-width: 768px) {
+                width: 140px;
+                /* 平板尺寸 */
+            }
+
+            @media (max-width: 480px) {
+                width: 160px;
+                /* 手机尺寸 */
+            }
+        }
+
+        /* 确保视频全屏并覆盖整个视口 */
+        #fullscreen-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            /* 保持视频比例并覆盖整个区域 */
+            z-index: -1;
+            /* 放在内容下方 */
+        }
+
+        /* 可选：添加内容层样式 */
+        .content {
+            position: relative;
+            z-index: 1;
+            color: white;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        /* 基础样式重置 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(145deg, #1a1a2e 0%, #16213e 100%);
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* 图片按钮容器（固定右下角） */
+        .btn-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            max-width: 80vw;
+            z-index: 100;
+        }
+
+        /* 图片按钮样式 */
+        .music-btn {
+            width: 70px;
+            height: 70px;
+            cursor: pointer;
+            background: rgba(255, 255, 255, 0.05);
+            border: none;
+            border-radius: 12px;
+            padding: 5px;
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+
+            /* 防止按钮内容溢出 */
+            overflow: hidden;
+        }
+
+        /* 图片适配 */
+        .music-btn img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+            transition: transform 0.3s;
+        }
+
+        /* 悬停效果 */
+        .music-btn:hover img {
+            transform: scale(1.05);
+        }
+
+        /* 播放中的视觉反馈 */
+        .music-btn.playing {
+            background: rgba(0, 247, 255, 0.1);
+            box-shadow: 0 0 15px rgba(0, 247, 255, 0.3);
+        }
+
+        /* 响应式适配 */
+        @media (max-width: 480px) {
+            .btn-container {
+                bottom: 10px;
+                right: 10px;
+                gap: 10px;
+            }
+
+            .music-btn {
+                width: 60px;
+                height: 60px;
+            }
+        }
+    </style>
 </head>
+
 <body>
-    <div class="cursor"></div>
-    <div class="cursor-follower"></div>
-    
-    <header>
-        <div class="logo">
-            <span class="logo-text">BiuXin</span>
-        </div>
-        <nav>
-            <ul>
-                <li><a href="#home" class="nav-link"><i class="fas fa-home"></i> <span>首页</span></a></li>
-                <li><a href="#projects" class="nav-link"><i class="fas fa-code"></i> <span>项目</span></a></li>
-            </ul>
-        </nav>
-        <div class="menu-toggle">
-            <div class="bar"></div>
-            <div class="bar"></div>
-            <div class="bar"></div>
-        </div>
-    </header>
+    <!--<div class="wrapper-0">
+		<p>TINGYU | 听雨</p>
+	</div> -->
 
-    <main>
-        <section id="home" class="hero">
-            <div class="hero-content">
-                <div class="hero-text">
-                    <h1 class="glitch" data-text="欢迎来到我的个人主页">欢迎来到我的个人主页</h1>
-                    <p class="subtitle">前端开发者 / 设计爱好者 / 创意工作者</p>
-                    <div class="cta-buttons">
-                        <a href="#projects" class="btn btn-primary">查看项目</a>
-                    </div>
-                </div>
-                <div class="hero-image">
-                    <div class="shape-container">
-                        <div class="shape shape-1"></div>
-                        <div class="shape shape-2"></div>
-                        <div class="shape shape-3"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="scroll-indicator">
-                <div class="mouse">
-                    <div class="wheel"></div>
-                </div>
-                <div class="arrow">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-            </div>
-        </section>
+    <!-- 新增左下角图片（修改点3） -->
+    <a href="https://blog.liushen.fun" target="_self" class="video-overlay-img-container">
+        <img src="./css/tingyu.png" alt="左下角图片" class="video-overlay-img-left">
+    </a>
 
-        <section id="projects" class="projects">
-            <h2 class="section-title">我的项目</h2>
-            <div class="project-grid">
-                <div class="project-card">
-                    <div class="project-icon">
-                        <i class="fas fa-globe"></i>
-                    </div>
-                    <div class="project-info">
-                        <h3>个人主页</h3>
-                        <p>我的个人主页网站</p>
-                        <div class="project-links">
-                            <a href="https://biuxin.com/" target="_blank"><i class="fas fa-external-link-alt"></i> 访问网站</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-icon">
-                        <i class="fas fa-blog"></i>
-                    </div>
-                    <div class="project-info">
-                        <h3>Hexo博客</h3>
-                        <p>基于Hexo的个人博客</p>
-                        <div class="project-links">
-                            <a href="https://blog.biuxin.com/" target="_blank"><i class="fas fa-external-link-alt"></i> 访问网站</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-icon">
-                        <i class="fas fa-envelope"></i>
-                    </div>
-                    <div class="project-info">
-                        <h3>临时邮件</h3>
-                        <p>临时邮箱服务</p>
-                        <div class="project-links">
-                            <a href="https://email.biuxin.com/" target="_blank"><i class="fas fa-external-link-alt"></i> 访问网站</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-icon">
-                        <i class="fas fa-server"></i>
-                    </div>
-                    <div class="project-info">
-                        <h3>哪吒监控</h3>
-                        <p>服务器监控系统</p>
-                        <div class="project-links">
-                            <a href="https://nezha.biuxin.com/" target="_blank"><i class="fas fa-external-link-alt"></i> 访问网站</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-icon">
-                        <i class="fas fa-robot"></i>
-                    </div>
-                    <div class="project-info">
-                        <h3>LobeChatAI</h3>
-                        <p>AI聊天应用</p>
-                        <div class="project-links">
-                            <a href="https://lobe-chat.biuxin.com/" target="_blank"><i class="fas fa-external-link-alt"></i> 访问网站</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-icon">
-                        <i class="fas fa-quote-right"></i>
-                    </div>
-                    <div class="project-info">
-                        <h3>随机一言API</h3>
-                        <p>随机一言API服务</p>
-                        <div class="project-links">
-                            <a href="https://v1.biuxin.com" target="_blank"><i class="fas fa-external-link-alt"></i> 访问网站</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-icon">
-                        <i class="fas fa-image"></i>
-                    </div>
-                    <div class="project-info">
-                        <h3>随机图API</h3>
-                        <p>随机图片API服务</p>
-                        <div class="project-links">
-                            <a href="https://api.200036.xyz/" target="_blank"><i class="fas fa-external-link-alt"></i> 访问网站</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-icon">
-                        <i class="fas fa-video"></i>
-                    </div>
-                    <div class="project-info">
-                        <h3>LibreTV</h3>
-                        <p>在线视频搜索与观看平台</p>
-                        <div class="project-links">
-                            <a href="https://video.biuxin.com" target="_blank"><i class="fas fa-external-link-alt"></i> 访问网站</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-icon">
-                        <i class="fas fa-folder"></i>
-                    </div>
-                    <div class="project-info">
-                        <h3>Alist存储</h3>
-                        <p>文件存储服务</p>
-                        <div class="project-links">
-                            <a href="https://alist.biuxin.com" target="_blank"><i class="fas fa-external-link-alt"></i> 访问网站</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-icon">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <div class="project-info">
-                        <h3>Blog朋友圈</h3>
-                        <p>博客朋友圈服务</p>
-                        <div class="project-links">
-                            <a href="https://friend.biuxin.com" target="_blank"><i class="fas fa-external-link-alt"></i> 访问网站</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-icon">
-                        <i class="fas fa-link"></i>
-                    </div>
-                    <div class="project-info">
-                        <h3>Blog友链检测</h3>
-                        <p>博客友链检测服务</p>
-                        <div class="project-links">
-                            <a href="https://check.biuxin.com" target="_blank"><i class="fas fa-external-link-alt"></i> 访问网站</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-icon">
-                        <i class="fas fa-film"></i>
-                    </div>
-                    <div class="project-info">
-                        <h3>小姐姐视频</h3>
-                        <p>视频分享平台</p>
-                        <div class="project-links">
-                            <a href="https://tiktok.biuxin.com" target="_blank"><i class="fas fa-external-link-alt"></i> 访问网站</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <div class="project-info">
-                        <h3>站点检测</h3>
-                        <p>网站状态检测服务</p>
-                        <div class="project-links">
-                            <a href="https://status.biuxin.com" target="_blank"><i class="fas fa-external-link-alt"></i> 访问网站</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-icon">
-                        <i class="fas fa-bell"></i>
-                    </div>
-                    <div class="project-info">
-                        <h3>MoePush消息推送</h3>
-                        <p>消息推送服务</p>
-                        <div class="project-links">
-                            <a href="https://moepush.biuxin.com/" target="_blank"><i class="fas fa-external-link-alt"></i> 访问网站</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-icon">
-                        <i class="fas fa-qrcode"></i>
-                    </div>
-                    <div class="project-info">
-                        <h3>短链二维码</h3>
-                        <p>短链接和二维码生成服务</p>
-                        <div class="project-links">
-                            <a href="https://bixin.dpdns.org/" target="_blank"><i class="fas fa-external-link-alt"></i> 访问网站</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-icon">
-                        <i class="fas fa-link"></i>
-                    </div>
-                    <div class="project-info">
-                        <h3>Sink短链</h3>
-                        <p>短链接生成服务</p>
-                        <div class="project-links">
-                            <a href="https://sink.biuxin.com/" target="_blank"><i class="fas fa-external-link-alt"></i> 访问网站</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-icon">
-                        <i class="fas fa-rss"></i>
-                    </div>
-                    <div class="project-info">
-                        <h3>RSS美化</h3>
-                        <p>RSS订阅美化服务</p>
-                        <div class="project-links">
-                            <a href="https://rss.biuxin.com/" target="_blank"><i class="fas fa-external-link-alt"></i> 访问网站</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-icon">
-                        <i class="fas fa-chart-bar"></i>
-                    </div>
-                    <div class="project-info">
-                        <h3>CFAnalytics数据分析</h3>
-                        <p>网站数据分析服务</p>
-                        <div class="project-links">
-                            <a href="https://analytics.biuxin.com/" target="_blank"><i class="fas fa-external-link-alt"></i> 访问网站</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-icon">
-                        <i class="fab fa-apple"></i>
-                    </div>
-                    <div class="project-info">
-                        <h3>清羽飞扬带壳工具</h3>
-                        <p>Mac应用打包工具</p>
-                        <div class="project-links">
-                            <a href="https://mac.biuxin.com/" target="_blank"><i class="fas fa-external-link-alt"></i> 访问网站</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
+    <!-- 新增图片元素（修改点4） -->
+    <img src="./css/image.png" alt="装饰图片" class="video-overlay-img">
 
-    <footer>
-        <div class="footer-content">
-            <div class="footer-logo">
-                <span class="logo-text">BiuXin</span>
-            </div>
-            <div class="footer-links">
-                <a href="#home">首页</a>
-                <a href="#projects">项目</a>
-            </div>
-            <div class="footer-social">
-                <a href="#" target="_blank"><i class="fab fa-github"></i></a>
-                <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
-                <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
-                <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2024 我的个人主页. All rights reserved.</p>
-        </div>
-    </footer>
+    <!-- 图片按钮容器（固定在右下角） -->
+    <div class="btn-container">
+        <button class="music-btn" data-audio="audio1">
+            <img src="./css/audio1.png" alt="音乐1" onerror="this.style.display='none'">
+        </button>
+        <button class="music-btn" data-audio="audio2">
+            <img src="./css/audio2.png" alt="音乐2" onerror="this.style.display='none'">
+        </button>
+        <button class="music-btn" data-audio="audio3">
+            <img src="./css/audio3.png" alt="音乐3" onerror="this.style.display='none'">
+        </button>
+    </div>
 
-    <script src="static/js/main.js"></script>
+    <!-- 隐藏的音频元素 -->
+    <audio id="audio1" class="hidden-audio" loop> <!-- 添加loop属性 -->
+        <source src="./css/audio1.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="audio2" class="hidden-audio" loop> <!-- 添加loop属性 -->
+        <source src="./css/audio2.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="audio3" class="hidden-audio" loop> <!-- 添加loop属性 -->
+        <source src="./css/audio3.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        const musicButtons = document.querySelectorAll('.music-btn');
+        const audios = {
+            audio1: document.getElementById('audio1'),
+            audio2: document.getElementById('audio2'),
+            audio3: document.getElementById('audio3')
+        };
+
+        // 修改点1：播放状态管理对象
+        let playingStates = {
+            audio1: false,
+            audio2: false,
+            audio3: false
+        };
+
+        musicButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const audioId = button.dataset.audio;
+                const audio = audios[audioId];
+
+                // 修改点2：移除停止其他音频的逻辑
+                if (playingStates[audioId]) {
+                    audio.pause();
+                    playingStates[audioId] = false;
+                    button.classList.remove('playing');
+                } else {
+                    audio.play().catch(error => {
+                        console.log('自动播放被阻止，需要用户交互');
+                    });
+                    playingStates[audioId] = true;
+                    button.classList.add('playing');
+                }
+            });
+        });
+
+        // 保持原有的首次点击解锁逻辑（修改点3：保留原有功能）
+        document.addEventListener('click', () => {
+            musicButtons.forEach(button => {
+                const audioId = button.dataset.audio;
+                const audio = audios[audioId];
+                if (audio.paused) return;
+                audio.play().catch(() => { });
+            });
+        }, { once: true });
+
+        // 保持原有的窗口resize逻辑（修改点4：保留布局适配）
+        window.addEventListener('resize', () => {
+            const container = document.querySelector('.btn-container');
+            const buttonWidth = container.querySelector('.music-btn').offsetWidth;
+            const maxButtons = Math.floor(window.innerWidth / (buttonWidth + 20));
+
+            container.style.maxWidth = `${maxButtons * (buttonWidth + 15) - 5}px`;
+        });
+    </script>
+
+    <!-- 视频容器 -->
+    <video id="fullscreen-video" autoplay muted loop playsinline>
+        <source src="./css/rainy.mp4" type="video/mp4">
+        <!-- 浏览器不支持时的备用内容 -->
+        您的浏览器不支持视频标签
+    </video>
 </body>
-</html> 
+
+</html>
