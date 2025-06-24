@@ -1,22 +1,132 @@
-/* Tingyu Style */
-
-/* Global */
-* {margin: 0; padding: 0; border: 0; outline: 0;}
-*,*:before,*:after {-webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;}
-::selection {background: #f8e89b;} ::-moz-selection {background: #f8e89b;}
-body,input,button,select,textarea,.button {font-size: 100%; line-height: 1.5; color: #555; font-family: -apple-system,BlinkMacSystemFont,"Helvetica Neue",Helvetica,Arial,"Microsoft Yahei","PingFang SC","Heiti SC",sans-serif;}
-
-/*Main*/
-.wrapper-0 {display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh;}
-/*404*/
-.title-404 {font-size: 2em; color: #888;}
-.text-404 {font-size: 1.5em; color: #ccc;}
-
-/* Mobile */
-@media (max-width: 767px) { /*mobile*/
-	.wrapper-0 {height: 80vh;}
-	.title-404 {font-size: 1.5em;}
+/* 基础样式重置 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
-@media (min-width: 768px) { /*screen*/
-	
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(145deg, #1a1a2e 0%, #16213e 100%);
+    overflow: hidden;
+    position: relative;
+}
+
+/* 左下角图片样式 */
+.video-overlay-img-left {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    width: 180px;
+    height: auto;
+    z-index: 95;
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.video-overlay-img-left:hover {
+    transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+    .video-overlay-img-left {
+        width: 90px;
+    }
+}
+
+@media (max-width: 480px) {
+    .video-overlay-img-left {
+        width: 70px;
+    }
+}
+
+/* 右上角装饰图片样式 */
+.video-overlay-img {
+    position: fixed;
+    top: 80px;
+    right: 85px;
+    width: 400px;
+    height: auto;
+    z-index: 99;
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+}
+
+@media (max-width: 768px) {
+    .video-overlay-img {
+        width: 140px;
+    }
+}
+
+@media (max-width: 480px) {
+    .video-overlay-img {
+        width: 160px;
+    }
+}
+
+/* 视频背景全屏 */
+#fullscreen-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    z-index: -1;
+}
+
+/* 右下角按钮容器 */
+.btn-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    max-width: 80vw;
+    z-index: 100;
+}
+
+/* 音乐按钮样式 */
+.music-btn {
+    width: 70px;
+    height: 70px;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.05);
+    border: none;
+    border-radius: 12px;
+    padding: 5px;
+    backdrop-filter: blur(5px);
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.music-btn img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+    transition: transform 0.3s;
+}
+
+.music-btn:hover img {
+    transform: scale(1.05);
+}
+
+.music-btn.playing {
+    background: rgba(0, 247, 255, 0.1);
+    box-shadow: 0 0 15px rgba(0, 247, 255, 0.3);
+}
+
+@media (max-width: 480px) {
+    .btn-container {
+        bottom: 10px;
+        right: 10px;
+        gap: 10px;
+    }
+
+    .music-btn {
+        width: 60px;
+        height: 60px;
+    }
 }
