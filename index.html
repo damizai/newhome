@@ -1,273 +1,56 @@
-
 <!DOCTYPE html>
 <html lang="zh">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no" />
     <title>清羽飞扬のHOME</title>
-    <meta name="description" content="清羽飞扬のHOME">
-    <meta name="keywords" content="tingyu, 清羽飞扬, LiuShen, 听雨">
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
-    <link rel="stylesheet" type="text/css" href="/css/style.css">
-    <link rel="icon" href="/favicon.ico" type="image/x-icon">
-    <style>
-        /* 以下为新增的左下角图片样式（修改点1） */
-        .video-overlay-img-left {
-            position: fixed;
-            bottom: 20px;
-            /* 距底部20px */
-            left: 20px;
-            /* 距左侧20px */
-            width: 180px;
-            /* 基础尺寸 */
-            height: auto;
-            z-index: 95;
-            /* 层级控制（在按钮下方） */
-            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
-            cursor: pointer;
-            transition: transform 0.3s;
-        }
-
-        /* 响应式适配 */
-        @media (max-width: 768px) {
-            .video-overlay-img-left {
-                width: 90px;
-                /* 平板尺寸 */
-            }
-        }
-
-        @media (max-width: 480px) {
-            .video-overlay-img-left {
-                width: 70px;
-                /* 手机尺寸 */
-            }
-        }
-
-        /* 悬停动画 */
-        .video-overlay-img-left:hover {
-            transform: scale(1.05);
-        }
-
-        /* 以下为修改后的图片样式（修改点2） */
-        .video-overlay-img {
-            position: fixed;
-            top: 80px;
-            right: 85px;
-            width: 400px;
-            /* 修改点2：增大宽度（原120px） */
-            height: auto;
-            z-index: 99;
-            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
-
-            /* 新增响应式适配 */
-            @media (max-width: 768px) {
-                width: 140px;
-                /* 平板尺寸 */
-            }
-
-            @media (max-width: 480px) {
-                width: 160px;
-                /* 手机尺寸 */
-            }
-        }
-
-        /* 确保视频全屏并覆盖整个视口 */
-        #fullscreen-video {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            object-fit: cover;
-            /* 保持视频比例并覆盖整个区域 */
-            z-index: -1;
-            /* 放在内容下方 */
-        }
-
-        /* 可选：添加内容层样式 */
-        .content {
-            position: relative;
-            z-index: 1;
-            color: white;
-            padding: 20px;
-            background: rgba(0, 0, 0, 0.5);
-        }
-
-        /* 基础样式重置 */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            min-height: 100vh;
-            background: linear-gradient(145deg, #1a1a2e 0%, #16213e 100%);
-            overflow: hidden;
-            position: relative;
-        }
-
-        /* 图片按钮容器（固定右下角） */
-        .btn-container {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-            max-width: 80vw;
-            z-index: 100;
-        }
-
-        /* 图片按钮样式 */
-        .music-btn {
-            width: 70px;
-            height: 70px;
-            cursor: pointer;
-            background: rgba(255, 255, 255, 0.05);
-            border: none;
-            border-radius: 12px;
-            padding: 5px;
-            backdrop-filter: blur(5px);
-            transition: all 0.3s ease;
-
-            /* 防止按钮内容溢出 */
-            overflow: hidden;
-        }
-
-        /* 图片适配 */
-        .music-btn img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 8px;
-            transition: transform 0.3s;
-        }
-
-        /* 悬停效果 */
-        .music-btn:hover img {
-            transform: scale(1.05);
-        }
-
-        /* 播放中的视觉反馈 */
-        .music-btn.playing {
-            background: rgba(0, 247, 255, 0.1);
-            box-shadow: 0 0 15px rgba(0, 247, 255, 0.3);
-        }
-
-        /* 响应式适配 */
-        @media (max-width: 480px) {
-            .btn-container {
-                bottom: 10px;
-                right: 10px;
-                gap: 10px;
-            }
-
-            .music-btn {
-                width: 60px;
-                height: 60px;
-            }
-        }
-    </style>
+    <meta name="description" content="清羽飞扬のHOME" />
+    <meta name="keywords" content="tingyu, 清羽飞扬, LiuShen, 听雨" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+    <link rel="stylesheet" href="/ststic/css/style.css" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
 </head>
 
 <body>
-    <!--<div class="wrapper-0">
-		<p>TINGYU | 听雨</p>
-	</div> -->
-
-    <!-- 新增左下角图片（修改点3） -->
+    <!-- 左下角图片 -->
     <a href="https://blog.liushen.fun" target="_self" class="video-overlay-img-container">
-        <img src="./css/tingyu.png" alt="左下角图片" class="video-overlay-img-left">
+        <img src="css/tingyu.png" alt="左下角图片" class="video-overlay-img-left" />
     </a>
 
-    <!-- 新增图片元素（修改点4） -->
-    <img src="./css/image.png" alt="装饰图片" class="video-overlay-img">
+    <!-- 右上角装饰图片 -->
+    <img src="css/image.png" alt="装饰图片" class="video-overlay-img" />
 
-    <!-- 图片按钮容器（固定在右下角） -->
+    <!-- 右下角音乐按钮容器 -->
     <div class="btn-container">
         <button class="music-btn" data-audio="audio1">
-            <img src="./css/audio1.png" alt="音乐1" onerror="this.style.display='none'">
+            <img src="css/audio1.png" alt="音乐1" onerror="this.style.display='none'" />
         </button>
         <button class="music-btn" data-audio="audio2">
-            <img src="./css/audio2.png" alt="音乐2" onerror="this.style.display='none'">
+            <img src="css/audio2.png" alt="音乐2" onerror="this.style.display='none'" />
         </button>
         <button class="music-btn" data-audio="audio3">
-            <img src="./css/audio3.png" alt="音乐3" onerror="this.style.display='none'">
+            <img src="css/audio3.png" alt="音乐3" onerror="this.style.display='none'" />
         </button>
     </div>
 
-    <!-- 隐藏的音频元素 -->
-    <audio id="audio1" class="hidden-audio" loop> <!-- 添加loop属性 -->
-        <source src="./css/audio1.mp3" type="audio/mpeg">
+    <!-- 隐藏音频元素 -->
+    <audio id="audio1" class="hidden-audio" loop>
+        <source src="css/audio1.mp3" type="audio/mpeg" />
     </audio>
-    <audio id="audio2" class="hidden-audio" loop> <!-- 添加loop属性 -->
-        <source src="./css/audio2.mp3" type="audio/mpeg">
+    <audio id="audio2" class="hidden-audio" loop>
+        <source src="css/audio2.mp3" type="audio/mpeg" />
     </audio>
-    <audio id="audio3" class="hidden-audio" loop> <!-- 添加loop属性 -->
-        <source src="./css/audio3.mp3" type="audio/mpeg">
+    <audio id="audio3" class="hidden-audio" loop>
+        <source src="css/audio3.mp3" type="audio/mpeg" />
     </audio>
 
-    <script>
-        const musicButtons = document.querySelectorAll('.music-btn');
-        const audios = {
-            audio1: document.getElementById('audio1'),
-            audio2: document.getElementById('audio2'),
-            audio3: document.getElementById('audio3')
-        };
+    <!-- 引入JS脚本 -->
+    <script src="js/script.js"></script>
 
-        // 修改点1：播放状态管理对象
-        let playingStates = {
-            audio1: false,
-            audio2: false,
-            audio3: false
-        };
-
-        musicButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const audioId = button.dataset.audio;
-                const audio = audios[audioId];
-
-                // 修改点2：移除停止其他音频的逻辑
-                if (playingStates[audioId]) {
-                    audio.pause();
-                    playingStates[audioId] = false;
-                    button.classList.remove('playing');
-                } else {
-                    audio.play().catch(error => {
-                        console.log('自动播放被阻止，需要用户交互');
-                    });
-                    playingStates[audioId] = true;
-                    button.classList.add('playing');
-                }
-            });
-        });
-
-        // 保持原有的首次点击解锁逻辑（修改点3：保留原有功能）
-        document.addEventListener('click', () => {
-            musicButtons.forEach(button => {
-                const audioId = button.dataset.audio;
-                const audio = audios[audioId];
-                if (audio.paused) return;
-                audio.play().catch(() => { });
-            });
-        }, { once: true });
-
-        // 保持原有的窗口resize逻辑（修改点4：保留布局适配）
-        window.addEventListener('resize', () => {
-            const container = document.querySelector('.btn-container');
-            const buttonWidth = container.querySelector('.music-btn').offsetWidth;
-            const maxButtons = Math.floor(window.innerWidth / (buttonWidth + 20));
-
-            container.style.maxWidth = `${maxButtons * (buttonWidth + 15) - 5}px`;
-        });
-    </script>
-
-    <!-- 视频容器 -->
+    <!-- 视频背景 -->
     <video id="fullscreen-video" autoplay muted loop playsinline>
-        <source src="./css/rainy.mp4" type="video/mp4">
-        <!-- 浏览器不支持时的备用内容 -->
+        <source src="ststic/css/rainy.mp4" type="video/mp4" />
         您的浏览器不支持视频标签
     </video>
 </body>
